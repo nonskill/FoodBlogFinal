@@ -1,0 +1,14 @@
+<!-- templates/event_edit.html -->
+<h1>Create Event Page</h1>
+<button onclick="goBack()">Go Back</button>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Submit New Event</button>
+</form>

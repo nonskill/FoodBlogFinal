@@ -1,0 +1,39 @@
+{% load static %}
+<html>
+    <head>
+        <title>FoodBlog</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/blog2.css' %}">  
+    </head>
+    <body>
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'add_post' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+            {% endif %}
+            <div class="page-header">
+            <h1><a href="/">Food Blog</a></h1>
+            <center><h3><i>"Count the memories, not the calories" -</i><b>Lisa</b></h3></center>
+            </div>
+
+<div class="content container">
+                <div class="highlight">
+                    <br>
+                    <center>
+                    {% if user.is_authenticated %}
+                    <a class="btn btn-default" href="{% url 'highlight_edit' pk=highlight.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+                    {% endif %}
+                    <h2>{{ highlight.title }}</h2>
+                    {% if highlight.published_date %}
+                    <div class="date">
+                    {{ highlight.published_date }}
+                    </div>
+                    {% endif %}
+                    <p><img src="{{ highlight.cover.url}}" width="760" height="500" alt="{{ highlight.title }}"</p>
+                    <p>{{ highlight.text|linebreaksbr }}</p>
+                </center>
+            </div>
+</div>
+</body>
+</html>
