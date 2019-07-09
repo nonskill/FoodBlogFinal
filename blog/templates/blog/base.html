@@ -57,11 +57,13 @@ p {
         {% if user.is_authenticated %}
         <a href="{% url 'add_post' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
         {% endif %}
-        <button onclick="window.location.href = 'events';">Events</button>
+        <button type="button" class="btn btn-outline-secondary" onclick="window.location.href= 'events';">Events</button>
+
         <div class="page-header">
             <h1><a href="/">Food Blog</a></h1>
             <center><h3><i>"Count the memories, not the calories" -</i><b>Lisa</b></h3></center>
         </div>
+
         <div class="container">
                 <div class="row">
                     <div class="col-sm-2">
@@ -82,7 +84,7 @@ p {
                                     <br><br>
                                 </div>                
                             </div>
-                    <div class="col-sm-8 hero-center">
+                    <div class="col-sm-7 hero-center">
                         <div class="hero-container">
                             <a href="http://127.0.0.1:8000/highlight/1/" style="background:url({{ highlights.0.cover.url }}); padding-top: 80%;background-position:50%;background-size: cover;display: block;"></a>
                             <a href="http://127.0.0.1:8000/highlight/1/" style="color:black">

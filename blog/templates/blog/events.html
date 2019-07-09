@@ -57,17 +57,24 @@ p {
         {% if user.is_authenticated %}
         <a href="{% url 'add_post' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
         {% endif %}
+
+        <button type="button" class="btn btn-outline-secondary" onclick="window.location.href= '/';">Home</button>
+
         <div class="page-header">
             <h1><a href="/">Food Blog</a></h1>
             <center><h3><i>"Count the memories, not the calories" -</i><b>Lisa</b></h3></center>
         </div>
-            <div class="row">
-            {% for event in events %}
-            <div class="column"> 
-                <h2><a href="{% url 'event_detail' pk=event.pk %}">{{ event.title }}</a></h2>
-                {{ event.published_date }}
-                <img class="img-fluid" src="{{ event.cover.url}}" alt="{{ event.title }}">
-                <p>{{ event.text|linebreaksbr }}</p>
+
+      {% for event in events %}
+      <div class="row">
+        <div class="card" style="width: 18rem;">
+            <img src="{{ event.cover.url}}" class="card-img-top" alt="{{ event.title }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ event.title }}</h5>
+              {{ event.published_date }}
+                <p class="card-text">{{ event.text|linebreaksbr }}</p>
+                <a href="{% url 'event_detail' pk=event.pk %}" class="btn btn-primary">See More</a>
+              </div>
             </div>
             {% endfor %}
     </body>

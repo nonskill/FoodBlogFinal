@@ -20,6 +20,10 @@ def event_list(request):
     events = Event.objects.all
     return render(request, 'blog/events.html', {'events': events})
 
+def events(request):
+    events = Event.objects.all
+    return render(request, 'blog/events.html', {'events': events})
+
 class CreatePostView(CreateView): # new
     model = Post
     form_class = PostForm

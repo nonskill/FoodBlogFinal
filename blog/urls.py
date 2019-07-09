@@ -16,4 +16,5 @@ urlpatterns = [
     path('post/<int:pk>/edit/', views.post_edit, name='post_edit'),
     path('highlight/<int:pk>/edit/', views.highlight_edit, name='highlight_edit'),
     path('event/<int:pk>/edit/', views.event_edit, name='event_edit'),
+    path('events/', views.events, name='events'),
 ]
