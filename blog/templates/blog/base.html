@@ -2,17 +2,31 @@
 <!doctype html>
 <html>
     <head>
+
 <style>
 * {
   box-sizing: border-box;
 }
 
-/* Create three equal columns that floats next to each other */
-.column {
-  float: left;
+/* Create ONE equal columns that floats next to each other */
+.columnmobile {
+  width: 100%;
+  padding: 10px;
+  height: 670px; /* Should be removed. Only for demonstration */
+}
+
+/* Create TWO equal columns that floats next to each other */
+.columntablet {
+  width: 50%;
+  padding: 10px;
+  height: 580px; /* Should be removed. Only for demonstration */
+}
+
+/* Create THREE equal columns that floats next to each other */
+.columndesktop {
   width: 33.33%;
   padding: 10px;
-  height: 650px; /* Should be removed. Only for demonstration */
+  height: 600px; /* Should be removed. Only for demonstration */
 }
 
 /* Clear floats after the columns */
@@ -22,21 +36,105 @@
   clear: both;
 }
 
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-  }
+/* Responsive layout for MOBILE - makes one colum stack on top of each other */
+.mobile {display: none;}
+
+@media only screen 
+and (min-width: 320px)
+and (max-width: 640px) {
+  .mobile {display: inline;}
+  .mobile {width: 100%;}
 }
 
-p {
+/* Responsive layout for TABLET - makes two columns stack on top of each other */
+.tablet {display: none;}
+
+@media only screen 
+and (min-width: 720px)
+and (max-width: 1079px) {
+  .tablet {display: inline;}
+  .tablet {width: 100%;}
+}
+
+/* Responsive layout for DESKTOP - makes the three columns stack on top of each other*/
+.desktop {display: none;}
+
+@media only screen 
+and (min-width: 1080px)
+and (max-width: 4096px) {
+  .desktop {display: inline;}
+  .desktop {width: 100%;}
+}
+
+/* Responsive Post-Texts for DESKTOP and TABLET - */
+.posttext {
+  height: 80px;
+  width: 375px;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive Post-Texts for MOBILE - */
+.posttextmobile {
+  height: 80px;
+  width: 460px;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive Highlight-Texts for MOBILE, DESKTOP and TABLET - */
+.highlighttext {
   height: 80px;
   white-space: wrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+
+/* Responsive Images for DESKTOP and TABLET - */
+.crop {
+   width: 365px;
+   height: 365px;
+   overflow: hidden;
+}
+
+.crop img {
+    width: 375px;
+    height: 375px;
+    padding: 0px;
+}
+
+/* Responsive Images for MOBILE - */
+.cropmobile {
+   width: 450px;
+   height: 450px;
+   overflow: hidden;
+}
+
+.cropmobile img {
+    width: 450px;
+    height: 450px;
+    padding: 0px;
+}
+
+/* Event-Button Top Left - */
+.button {
+    background-color:black;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 10px 10px;
+    cursor: pointer;
+}
+
 </style>
+
         <title>Food Blog</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -50,19 +148,41 @@ p {
 
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'css/blog2.css' %}">  
+        <link rel="stylesheet" href="{% static 'css/blog3.css' %}">  
         <link href="https://fonts.googleapis.com/css?family=Arapey:400i&display=swap" rel="stylesheet">  
     </head>
     <body>
         {% if user.is_authenticated %}
         <a href="{% url 'add_post' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
         {% endif %}
-        <button type="button" class="btn btn-outline-secondary" onclick="window.location.href= 'events';">Events</button>
+        
+        <a href="http://127.0.0.1:8000/events/" class="button">Events</a>
 
         <div class="page-header">
             <h1><a href="/">Food Blog</a></h1>
-            <center><h3><i>"Count the memories, not the calories" -</i><b>Lisa</b></h3></center>
+            <center><h3><i>"Count the memories, not the calories" -</i><b>Lisa</b></h3>
+            {% if user.is_authenticated %}
+            <button onclick="myFunction()">Show "Create Highlight"</button>
+            <div id="myDIV">
+            Erstelle insgesamt 5 Highlights um die Seiten-Struktur optimal zu gestalten.
+            <br><a href="{% url 'add_highlight' %}" class="top-menu2"><span class="glyphicon glyphicon-plus"></span></a></br>
+            {% endif %}
+            </div>
+        </center>
         </div>
+
+
+        <script>
+                function myFunction() {
+                  var x = document.getElementById("myDIV");
+                  if (x.style.display === "none") {
+                    x.style.display = "block";
+                  } else {
+                    x.style.display = "none";
+                  }
+                }
+                </script>
+
 
         <div class="container">
                 <div class="row">
@@ -71,56 +191,119 @@ p {
                             <a href="http://127.0.0.1:8000/highlight/2/" style="background:url( {{ highlights.1.cover.url }} ); padding-top: 80%;background-position:50%;background-size: cover;display: block;"></a>
                             <a href="http://127.0.0.1:8000/highlight/2/" style="color:black">
                                 <center><h2>{{ highlights.1 }}</h2></a></center>
-                                <div class="text">
-                                <center><p>{{ highlights.1.text }}</p></center>
-                            </div>
+                                <div class="highlighttext">
+                                <center>{{ highlights.1.text }}</center>
+                                </div>
                                 <br><br>
                             </div>                                     
+
                             <div>
                                 <a href="http://127.0.0.1:8000/highlight/3/" style="background:url( {{ highlights.2.cover.url }} ); padding-top: 80%;background-position:50%;background-size: cover;display: block;"></a>
                                 <a href="http://127.0.0.1:8000/highlight/3/" style="color:black">
                                     <center><h2>{{ highlights.2 }}</h2></a></center>
-                                    <center><p>{{ highlights.2.text }}</p></center>
+                                    <div class="highlighttext">
+                                    <center>{{ highlights.2.text }}</center>
+                                    </div>
                                     <br><br>
                                 </div>                
                             </div>
-                    <div class="col-sm-7 hero-center">
+                    <div class="col-sm-8 hero-center">
                         <div class="hero-container">
                             <a href="http://127.0.0.1:8000/highlight/1/" style="background:url({{ highlights.0.cover.url }}); padding-top: 80%;background-position:50%;background-size: cover;display: block;"></a>
                             <a href="http://127.0.0.1:8000/highlight/1/" style="color:black">
                             <center><h2><span class="box">{{ highlights.0 }}</span></h2></a></center>
+                            <div class="mobile">
+                                <div class="highlighttext">
+                                <center>{{ highlights.0.text }}</center>
+                                </div>
+                            </div>
                             <br><br>
                         </div>
                     </div>
+
                     <div class="col-sm-2">
                         <div>
                             <a href="http://127.0.0.1:8000/highlight/4/" style="background:url({{ highlights.3.cover.url }}); padding-top: 80%;background-position:50%;background-size: cover;display: block;"></a>
                             <a href="http://127.0.0.1:8000/highlight/4/" style="color:black">
                             <center><h2><span class="box">{{ highlights.3 }}</span></h2></a></center>
-                            <center><p>{{ highlights.3.text }}</p></center>
+                            <div class="highlighttext">
+                            <center>{{ highlights.3.text }}</center>
+                            </div>
                             <br>
                             <br>
                         </div>
-                        <div>
+                    <div>
                             <a href="http://127.0.0.1:8000/highlight/5/" style="background:url({{ highlights.4.cover.url }}); padding-top: 80%;background-position:50%;background-size: cover;display: block;"></a>
                             <a href="http://127.0.0.1:8000/highlight/5/" style="color:black">
                             <center><h2><span class="box">{{ highlights.4 }}</span></h2></a></a></center>
-                            <center><p>{{ highlights.4.text }}</p></center>
+                            <div class="highlighttext">
+                            <center>{{ highlights.4.text }}</center>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <hr> 
                 <i><center><h2>Latest Posts</h2></center></i>
-            <div class="row">
-            {% for post in posts %}
-            <div class="column"> 
-                <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-                {{ post.published_date }}
-                <img class="img-fluid" src="{{ post.cover.url}}" alt="{{ post.title }}">
-                <p>{{ post.text|linebreaksbr }}</p>
+                <div class="mobile">
+                <center>
+                <div class="row">
+                {% for post in posts %}
+                <div class="columnmobile">
+                <div class="mobile"> 
+                    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                    {{ post.published_date }}
+                    <div class="cropmobile">
+                        <img src="{{ post.cover.url }}" alt="{{ post.title }}">
+                    </div>
+                    <div class="posttextmobile">
+                    {{ post.text|linebreaksbr }}
+                    </div>
+                </div>
             </div>
-            {% endfor %}
-             
+                {% endfor %}
+            </center>
+            </div>
+
+            <div class="tablet">
+            <center>
+                <div class="row">
+                {% for post in posts %}
+                <div class="columntablet">
+                <div class="tablet">
+                    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                    {{ post.published_date }}
+                    <div class="crop">
+                        <img src="{{ post.cover.url }}" alt="{{ post.title }}">
+                    </div>
+                    <div class="posttext">
+                    {{ post.text|linebreaksbr }}
+                    </div>
+                </div>
+            </div>
+                {% endfor %}
+                
+            </center>
+            </div>
+
+            <div class="desktop">
+            <center>
+                    <div class="row">
+                    {% for post in posts %}
+                    <div class="columndesktop">
+                    <div class="desktop">
+                        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                        {{ post.published_date }}
+                        <div class="crop">
+                            <img src="{{ post.cover.url }}" alt="{{ post.title }}">
+                        </div>
+                        <div class="posttext">
+                        {{ post.text|linebreaksbr }}
+                        </div>
+                    </div>
+                </div>
+                    {% endfor %}
+            </center>
+            </div>
     </body>
 </html>
