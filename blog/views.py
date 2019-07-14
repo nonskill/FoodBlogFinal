@@ -40,7 +40,7 @@ class CreateEventView(CreateView): # new
     model = Event
     form_class = EventForm
     template_name = 'event.html'
-    success_url = reverse_lazy('post_list')
+    success_url = reverse_lazy('events')
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
