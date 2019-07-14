@@ -71,6 +71,11 @@ h1, h2, h3, h4 {
     margin-top: 15px;
 }
 
+.top-menu2, .top-menu2:hover, .top-menu2:visited {
+    color: red;
+    font-size: 20pt;
+}
+
 .post {
     margin-bottom: 70px;
 }
