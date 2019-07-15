@@ -246,18 +246,20 @@ and (max-width: 4096px) {
             <center><div class="Heading"><a style="text-decoration:none" href="/">Food-Stories</a></div>
             <center><h3><i>"Count the memories, not the calories" -</i><b>Lisa</b></h3></center>
         </div>
-<i><center><h2>Latest Events</h2></center></i>
-      {% for event in events %}
-      <div class="row">
-        <div class="card" style="width: 18rem;">
-            <img src="{{ event.cover.url}}" class="card-img-top" alt="{{ event.title }}">
-            <div class="card-body">
-              <h5 class="card-title">{{ event.title }}</h5>
-              {{ event.published_date }}
-                <p class="card-text">{{ event.text|linebreaksbr }}</p>
-                <a href="{% url 'event_detail' pk=event.pk %}" class="btn btn-primary">See More</a>
+
+        <i><center><h2>Latest Events</h2></center></i>
+        <div class="card-columns">
+          {% for event in events %}
+            <div class="card">
+                <img src="{{ event.cover.url}}" class="card-img-top" alt="{{ event.title }}">
+                <div class="card-body">
+                  <h5 class="card-title">{{ event.title }}</h5>
+                  {{ event.published_date }}
+                  <p class="card-text">{{ event.text|linebreaksbr }}</p>
+                  <a href="{% url 'event_detail' pk=event.pk %}" class="btn btn-primary">See More</a>
+                </div>
               </div>
-            </div>
             {% endfor %}
+          </div>
     </body>
 </html>
