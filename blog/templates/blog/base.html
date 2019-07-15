@@ -280,7 +280,7 @@ and (max-width: 4096px) {
             <div class="desktop">
             {% if user.is_authenticated %}
             <button onclick="ShowHighlight()">Show "Create Highlight"</button>
-            <div id="myDIV">
+            <div style="display:none;" id="myDIV">
             Erstelle insgesamt 5 Highlights um die Seiten-Struktur optimal zu gestalten.
             <br><a href="{% url 'add_highlight' %}" class="top-menu2"><span class="glyphicon glyphicon-plus"></span></a></br>
             {% endif %}
