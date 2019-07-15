@@ -305,9 +305,22 @@ and (max-width: 4096px) {
                     <br>
                     <center>
                     <h2>{{ event.title }}</h2>
-                    <p><img src="{{ event.cover.url}}" width="760" height="500" alt="{{ event.title }}"</p>
-                    <h2>{{ event.location }}</h2>
-                    <h4>Am {{ event.date }} um {{ event.time }}</h4>
+                    <h4><i>Am {{ event.date }} um {{ event.time }}<br>in: {{ event.location }}</h4>
+                    <div class="desktop">
+                        <div class="crop">
+                            <p><img src="{{ event.cover.url}}" alt="{{ event.title }}"></p>
+                        </div>
+                    </div>
+                    <div class="tablet">
+                            <div class="crop">
+                                <p><img src="{{ event.cover.url}}" alt="{{ event.title }}"></p>
+                            </div>
+                    </div>
+                    <div class="mobile">
+                            <div class="cropmobile">
+                                <p><img src="{{ event.cover.url}}" alt="{{ event.title }}"></p>
+                            </div>
+                    </div>
                     <p>{{ event.text|linebreaksbr }}</p>
                 </center>
             </div>
