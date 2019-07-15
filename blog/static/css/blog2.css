@@ -23,16 +23,11 @@ body {
 .circular--square {
     border-radius: 50%;
 }
+
 .page-header {
     margin-top: 0;
     padding: 20px 20px 20px 40px;
-}
-
-.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
-    color: #565c86;
-    font-size: 36pt;
-    text-decoration: none;
-    text-align: center;
+    color: black;
 }
 
 .page-footer {
@@ -45,10 +40,6 @@ body {
     font-size: 20pt;
     text-decoration: none;
     text-align: left;
-}
-
-h1, h2, h3, h4 {
-    font-family: 'Didot', serif;
 }
 
 .date {
@@ -116,3 +107,4 @@ html {
     display: inline-block;
     max-width: 100%;
 }
+
