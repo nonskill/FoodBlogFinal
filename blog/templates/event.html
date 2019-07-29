@@ -10,5 +10,6 @@ function goBack() {
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{ form.as_p }}
+  Geben Sie das Datum im Format TT.MM.JJJJ und die Zeit im Format HH:MM:SS ein.<br><br>
   <button type="submit">Submit New Event</button>
 </form>
