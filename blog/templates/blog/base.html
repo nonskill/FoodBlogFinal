@@ -380,7 +380,11 @@ and (max-width: 4096px) {
                 <div class="columnmobile">
                 <div class="mobile"> 
                     <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                    {% if post.published_date %}
                     {{ post.published_date }}
+                    {% else %}
+                    <br>
+                    {% endif %}
                     <div class="cropmobile">
                         <img src="{{ post.cover.url }}" alt="{{ post.title }}">
                     </div>
@@ -400,7 +404,11 @@ and (max-width: 4096px) {
                 <div class="columntablet">
                 <div class="tablet">
                     <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                    {% if post.published_date %}
                     {{ post.published_date }}
+                    {% else %}
+                    <br>
+                    {% endif %}
                     <div class="crop">
                         <img src="{{ post.cover.url }}" alt="{{ post.title }}">
                     </div>
@@ -421,7 +429,11 @@ and (max-width: 4096px) {
                     <div class="columndesktop">
                     <div class="desktop">
                         <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+                        {% if post.published_date %}
                         {{ post.published_date }}
+                        {% else %}
+                        <br>
+                        {% endif %}
                         <div class="crop">
                             <img src="{{ post.cover.url }}" alt="{{ post.title }}">
                         </div>
