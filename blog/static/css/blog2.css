@@ -86,20 +86,6 @@ and (max-width: 4096px) {
   text-overflow: ellipsis;
 }
 
-
-/* Responsive Images for DESKTOP and TABLET - */
-.crop {
-   width: 365px;
-   height: 365px;
-   overflow: hidden;
-}
-
-.crop img {
-    width: 375px;
-    height: 375px;
-    padding: 0px;
-}
-
 /* Responsive Images for MOBILE - */
 .cropmobile {
    width: 450px;
